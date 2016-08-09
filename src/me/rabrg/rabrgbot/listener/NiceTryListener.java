@@ -18,7 +18,7 @@ public final class NiceTryListener extends ListenerAdapter {
         for (final String word : words) {
             if (word.startsWith("nt")) {
                 event.getMessage().deleteMessage();
-                event.getChannel().sendMessage("Deleted @" + event.getAuthorName() + "'s dumb message");
+                event.getChannel().sendMessage("Deleted " + event.getAuthor().getAsMention() + "'s dumb message");
                 break;
             }
         }
