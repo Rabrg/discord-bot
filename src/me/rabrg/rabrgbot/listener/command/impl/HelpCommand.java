@@ -21,7 +21,8 @@ public final class HelpCommand implements Command {
         final StringBuilder builder = new StringBuilder();
         builder.append("Available commands:\n");
         for (final Command command : bot.getCommandListener().getCommands()) {
-            builder.append("\t\t\t\t\t\t").append(command.getName()).append(": ").append(command.getDescription()).append("\n");
+            builder.append("\t\t\t\t\t\t").append(command.getName()).append(": ").append(command.getDescription())
+                    .append("\n");
         }
         event.getChannel().sendMessage(builder.toString());
     }
