@@ -24,11 +24,11 @@ public final class JoinCommand implements Command {
         if (channel == null) {
             event.getChannel().sendMessage("Channel " + args + " doesn't exist");
         } else if (channel == event.getGuild().getAudioManager().getConnectedChannel()) {
-            event.getChannel().sendMessage("Already in channel " + args);
+            event.getChannel().sendMessage("Already in channel " + channel.getName());
         } else {
             event.getGuild().getAudioManager().closeAudioConnection();
             event.getGuild().getAudioManager().openAudioConnection(channel);
-            event.getChannel().sendMessage("Joined channel " + args);
+            event.getChannel().sendMessage("Joined channel " + channel.getName());
         }
     }
 }
