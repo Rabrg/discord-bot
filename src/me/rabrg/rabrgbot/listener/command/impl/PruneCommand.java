@@ -22,15 +22,19 @@ public final class PruneCommand implements Command {
 
     @Override
     public void run(final RabrgBot bot, final MessageReceivedEvent event, final String args) {
-        final User user = event.getGuild().getUsers().stream().filter(
-                vChan -> vChan.getUsername().equalsIgnoreCase(args)).findFirst().orElse(null);
-        if (user == null) {
-            event.getChannel().sendMessage("Couldn't find user " + args);
+        if (!event.getAuthor().getUsername().equals("Rabrg") && !event.getAuthor().getUsername().equals("Reaprar")) {
+            event.getChannel().sendMessage("You're a peasant and don't have permission to use that command");
         } else {
-            event.getGuild().getTextChannels().get(0).getHistory().retrieve().stream()
-                    .filter(message -> message.getAuthor().getUsername().equalsIgnoreCase(args)).limit(5)
-                    .collect(Collectors.toList()).forEach(Message::deleteMessage);
-            event.getChannel().sendMessage("Removed " + user.getUsername() + "'s last 5 messages");
+            final User user = event.getGuild().getUsers().stream().filter(
+                    vChan -> vChan.getUsername().equalsIgnoreCase(args)).findFirst().orElse(null);
+            if (user == null) {
+                event.getChannel().sendMessage("Couldn't find user " + args);
+            } else {
+                event.getGuild().getTextChannels().get(0).getHistory().retrieve().stream()
+                        .filter(message -> message.getAuthor().getUsername().equalsIgnoreCase(args)).limit(5)
+                        .collect(Collectors.toList()).forEach(Message::deleteMessage);
+                event.getChannel().sendMessage("Removed " + user.getUsername() + "'s last 5 messages");
+            }
         }
     }
 }
