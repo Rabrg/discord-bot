@@ -21,7 +21,8 @@ public final class CommandListener extends ListenerAdapter {
         this.bot = bot;
 
         commands = Arrays.asList(new HelpCommand(), new JoinCommand(), new LeaveCommand(), new PlayCommand(),
-                new StopCommand(), new VolumeCommand(), new SonglistCommand(), new RollCommand(), new AskCommand());
+                new StopCommand(), new VolumeCommand(), new SonglistCommand(), new RollCommand(), new AskCommand(),
+                new ChatbotCommand());
     }
 
     public void onMessageReceived(final MessageReceivedEvent event) {

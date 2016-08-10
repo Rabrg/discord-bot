@@ -1,5 +1,6 @@
 package me.rabrg.rabrgbot;
 
+import me.rabrg.rabrgbot.listener.ChatbotListener;
 import me.rabrg.rabrgbot.listener.CommandListener;
 import me.rabrg.rabrgbot.listener.NiceTryListener;
 import net.dv8tion.jda.JDA;
@@ -17,6 +18,9 @@ public final class RabrgBot {
 
     private CommandListener commandListener;
     private NiceTryListener niceTryListener;
+    private ChatbotListener chatbotListener;
+
+    private boolean chatbot = false;
 
     private final Map<String, Player> audioPlayers = new HashMap<>();
 
@@ -31,8 +35,10 @@ public final class RabrgBot {
     public RabrgBot create() throws Exception {
         commandListener = new CommandListener(this);
         niceTryListener = new NiceTryListener(this);
+        chatbotListener = new ChatbotListener(this);
         api = new JDABuilder()
                 .setBotToken(BOT_TOKEN)
+                .addListener(chatbotListener)
                 .addListener(commandListener)
                 .addListener(niceTryListener)
                 .buildBlocking();
@@ -49,6 +55,14 @@ public final class RabrgBot {
 
     public NiceTryListener getNiceTryListener() {
         return niceTryListener;
+    }
+
+    public boolean toggleChatbot() {
+        return (chatbot = !chatbot);
+    }
+
+    public boolean chatbotEnabled() {
+        return chatbot;
     }
 
     public Player getAudioPlayer(final String guildId) {
