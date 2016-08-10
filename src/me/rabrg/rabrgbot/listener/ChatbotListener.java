@@ -20,7 +20,8 @@ public final class ChatbotListener extends ListenerAdapter {
     public void onMessageReceived(final MessageReceivedEvent event) {
         final String message = event.getMessage().getContent();
         if (bot.chatbotEnabled() && !event.getAuthor().isBot() && !"!chatbot".equals(message)
-                && !message.contains("http") && !message.contains("www.")) {
+                && !message.contains("http") && !message.contains("www.")
+                && !message.startsWith(CommandListener.COMMAND_PREFIX)) {
             if (chatbot == null) {
                 try {
                     chatbot = new ChatterBotFactory().create(ChatterBotType.CLEVERBOT).createSession();

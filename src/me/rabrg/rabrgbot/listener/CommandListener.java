@@ -11,7 +11,7 @@ import java.util.List;
 
 public final class CommandListener extends ListenerAdapter {
 
-    private static final String COMMAND_PREFIX = "!";
+    public static final String COMMAND_PREFIX = "!";
 
     private final List<Command> commands;
 
