@@ -27,9 +27,9 @@ public final class SonglistCommand implements Command {
             for (final File fileEntry : root) {
                 builder.append("\t\t\t\t\t\t").append(fileEntry.getName()).append("\n");
             }
-            event.getChannel().sendMessage(builder.toString());
+            bot.sendMessage(event.getChannel(), builder.toString());
         } else {
-            event.getChannel().sendMessage("No songs found");
+            bot.sendMessage(event.getChannel(), "No songs found");
         }
     }
 }

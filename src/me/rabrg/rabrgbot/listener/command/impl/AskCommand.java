@@ -32,8 +32,8 @@ public final class AskCommand implements Command {
     @Override
     public void run(final RabrgBot bot, final MessageReceivedEvent event, final String args) {
         if (args.toLowerCase().contains("should i ban pery") || args.toLowerCase().contains("should i ban perry"))
-            event.getChannel().sendMessage("Yes, definitely");
+            bot.sendMessage(event.getChannel(), "Yes, definitely");
         else
-            event.getChannel().sendMessage(RESPONSES.get(random.nextInt(RESPONSES.size())));
+            bot.sendMessage(event.getChannel(), RESPONSES.get(random.nextInt(RESPONSES.size())));
     }
 }

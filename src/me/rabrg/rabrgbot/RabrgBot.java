@@ -7,6 +7,7 @@ import me.rabrg.rabrgbot.listener.NiceTryListener;
 import net.dv8tion.jda.JDA;
 import net.dv8tion.jda.JDABuilder;
 import net.dv8tion.jda.audio.player.Player;
+import net.dv8tion.jda.entities.MessageChannel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,7 @@ public final class RabrgBot {
     private MessageLogListener messageLogListener;
 
     private boolean chatbot = false;
+    private boolean silent = false;
 
     private final Map<String, Player> audioPlayers = new HashMap<>();
 
@@ -47,6 +49,11 @@ public final class RabrgBot {
                 .addListener(messageLogListener)
                 .buildBlocking();
         return this;
+    }
+
+    public void sendMessage(final MessageChannel channel, final String message) {
+        if (!silent)
+            channel.sendMessage(message);
     }
 
     public JDA getApi() {
@@ -75,5 +82,9 @@ public final class RabrgBot {
 
     public Player putAudioPlayer(final String guildid, final Player player) {
         return audioPlayers.put(guildid, player);
+    }
+
+    public boolean toggleSilence() {
+        return (silent = !silent);
     }
 }

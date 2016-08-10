@@ -23,6 +23,6 @@ public final class RollCommand implements Command {
 
     @Override
     public void run(final RabrgBot bot, final MessageReceivedEvent event, final String args) {
-        event.getChannel().sendMessage("Rolled a " + (random.nextInt(6) + 1));
+        bot.sendMessage(event.getChannel(), "Rolled a " + (random.nextInt(6) + 1));
     }
 }

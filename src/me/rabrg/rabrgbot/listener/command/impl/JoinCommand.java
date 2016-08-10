@@ -22,13 +22,13 @@ public final class JoinCommand implements Command {
         final VoiceChannel channel = event.getGuild().getVoiceChannels().stream().filter(
                 vChan -> vChan.getName().equalsIgnoreCase(args)).findFirst().orElse(null);
         if (channel == null) {
-            event.getChannel().sendMessage("Channel " + args + " doesn't exist");
+            bot.sendMessage(event.getChannel(), "Channel " + args + " doesn't exist");
         } else if (channel == event.getGuild().getAudioManager().getConnectedChannel()) {
-            event.getChannel().sendMessage("Already in channel " + channel.getName());
+            bot.sendMessage(event.getChannel(), "Already in channel " + channel.getName());
         } else {
             event.getGuild().getAudioManager().closeAudioConnection();
             event.getGuild().getAudioManager().openAudioConnection(channel);
-            event.getChannel().sendMessage("Joined channel " + channel.getName());
+            bot.sendMessage(event.getChannel(), "Joined channel " + channel.getName());
         }
     }
 }

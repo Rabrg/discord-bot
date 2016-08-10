@@ -21,14 +21,14 @@ public final class VolumeCommand implements Command {
     public void run(final RabrgBot bot, final MessageReceivedEvent event, final String args) {
         final Player player = bot.getAudioPlayer(event.getGuild().getId());
         if (player == null || player.isStopped()) {
-            event.getChannel().sendMessage("Must be playing to change the volume.");
+            bot.sendMessage(event.getChannel(), "Must be playing to change the volume.");
         } else {
             try {
                 final float volume = Math.min(Float.parseFloat(args), 1);
                 player.setVolume(volume);
-                event.getChannel().sendMessage("Set volume to " + volume);
+                bot.sendMessage(event.getChannel(), "Set volume to " + volume);
             } catch (final NumberFormatException e) {
-                event.getChannel().sendMessage(args + " isn't a valid number");
+                bot.sendMessage(event.getChannel(), args + " isn't a valid number");
             }
         }
     }

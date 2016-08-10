@@ -22,11 +22,11 @@ public final class StopCommand implements Command {
         final String guildId = event.getGuild().getId();
         final Player player = bot.getAudioPlayer(guildId);
         if (player == null || player.isStopped()) {
-            event.getChannel().sendMessage("Must be playing to stop");
+            bot.sendMessage(event.getChannel(), "Must be playing to stop");
         } else {
             player.stop();
             bot.putAudioPlayer(guildId, null);
-            event.getChannel().sendMessage("Stopped playing");
+            bot.sendMessage(event.getChannel(), "Stopped playing");
         }
     }
 }

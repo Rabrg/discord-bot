@@ -24,6 +24,6 @@ public final class HelpCommand implements Command {
             builder.append("\t\t\t\t\t\t").append(command.getName()).append(": ").append(command.getDescription())
                     .append("\n");
         }
-        event.getChannel().sendMessage(builder.toString());
+        bot.sendMessage(event.getChannel(), builder.toString());
     }
 }

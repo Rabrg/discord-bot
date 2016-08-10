@@ -19,11 +19,11 @@ public final class LeaveCommand implements Command {
     @Override
     public void run(final RabrgBot bot, final MessageReceivedEvent event, final String args) {
         if (event.getGuild().getAudioManager().getConnectedChannel() != null) {
-            event.getChannel().sendMessage("Left channel " + event.getGuild().getAudioManager()
+            bot.sendMessage(event.getChannel(), "Left channel " + event.getGuild().getAudioManager()
                     .getConnectedChannel().getName());
             event.getGuild().getAudioManager().closeAudioConnection();
         } else {
-            event.getChannel().sendMessage("Not in a channel");
+            bot.sendMessage(event.getChannel(), "Not in a channel");
         }
     }
 }

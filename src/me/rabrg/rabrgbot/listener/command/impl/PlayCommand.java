@@ -34,12 +34,12 @@ public final class PlayCommand implements Command {
             bot.putAudioPlayer(event.getGuild().getId(), player);
             event.getGuild().getAudioManager().setSendingHandler(player);
             player.play();
-            event.getChannel().sendMessage("Now playing: " + args);
+            bot.sendMessage(event.getChannel(), "Now playing: " + args);
         } catch (final IOException e) {
-            event.getChannel().sendMessage("Could not load the file " + audioFile.getName());
+            bot.sendMessage(event.getChannel(), "Could not load the file " + audioFile.getName());
             e.printStackTrace();
         } catch (final UnsupportedAudioFileException e) {
-            event.getChannel().sendMessage(
+            bot.sendMessage(event.getChannel(),
                     "Could not load file. It either isn't an audio file or isn't a recognized audio format.");
             e.printStackTrace();
         }
