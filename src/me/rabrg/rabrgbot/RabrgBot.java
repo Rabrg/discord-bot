@@ -2,6 +2,7 @@ package me.rabrg.rabrgbot;
 
 import me.rabrg.rabrgbot.listener.ChatbotListener;
 import me.rabrg.rabrgbot.listener.CommandListener;
+import me.rabrg.rabrgbot.listener.MessageLogListener;
 import me.rabrg.rabrgbot.listener.NiceTryListener;
 import net.dv8tion.jda.JDA;
 import net.dv8tion.jda.JDABuilder;
@@ -19,6 +20,7 @@ public final class RabrgBot {
     private CommandListener commandListener;
     private NiceTryListener niceTryListener;
     private ChatbotListener chatbotListener;
+    private MessageLogListener messageLogListener;
 
     private boolean chatbot = false;
 
@@ -36,11 +38,13 @@ public final class RabrgBot {
         commandListener = new CommandListener(this);
         niceTryListener = new NiceTryListener(this);
         chatbotListener = new ChatbotListener(this);
+        messageLogListener = new MessageLogListener();
         api = new JDABuilder()
                 .setBotToken(BOT_TOKEN)
                 .addListener(chatbotListener)
                 .addListener(commandListener)
                 .addListener(niceTryListener)
+                .addListener(messageLogListener)
                 .buildBlocking();
         return this;
     }
