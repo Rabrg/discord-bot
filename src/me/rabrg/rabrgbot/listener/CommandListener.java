@@ -22,7 +22,7 @@ public final class CommandListener extends ListenerAdapter {
 
         commands = Arrays.asList(new HelpCommand(), new JoinCommand(), new LeaveCommand(), new PlayCommand(),
                 new StopCommand(), new VolumeCommand(), new SonglistCommand(), new RollCommand(), new AskCommand(),
-                new ChatbotCommand(), new PruneCommand(), new SilentCommand());
+                new ChatbotCommand(), new PruneCommand(), new SilentCommand(), new RandomCommand());
     }
 
     public void onMessageReceived(final MessageReceivedEvent event) {
