@@ -4,6 +4,7 @@ import me.rabrg.rabrgbot.listener.ChatbotListener;
 import me.rabrg.rabrgbot.listener.CommandListener;
 import me.rabrg.rabrgbot.listener.MessageLogListener;
 import me.rabrg.rabrgbot.listener.NiceTryListener;
+import me.rabrg.rabrgbot.overwatch.OverwatchApi;
 import net.dv8tion.jda.JDA;
 import net.dv8tion.jda.JDABuilder;
 import net.dv8tion.jda.audio.player.Player;
@@ -17,6 +18,7 @@ public final class RabrgBot {
     private static final String BOT_TOKEN = "MjEyMjg0OTc4OTM4MTE4MTQ0.CopqZQ.fcTRHIfoDxThg5S14sF6vgZuRJU";
 
     private JDA api;
+    private OverwatchApi overwatchApi;
 
     private CommandListener commandListener;
     private NiceTryListener niceTryListener;
@@ -48,6 +50,7 @@ public final class RabrgBot {
                 .addListener(niceTryListener)
                 .addListener(messageLogListener)
                 .buildBlocking();
+        overwatchApi = new OverwatchApi();
         return this;
     }
 
@@ -58,6 +61,10 @@ public final class RabrgBot {
 
     public JDA getApi() {
         return api;
+    }
+
+    public OverwatchApi getOverwatchApi() {
+        return overwatchApi;
     }
 
     public CommandListener getCommandListener() {
